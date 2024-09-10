@@ -9,5 +9,6 @@
 <body>
     <x-navbar></x-navbar>
     @yield('content')
+    <x-footer></x-footer>
 </body>
 </html>

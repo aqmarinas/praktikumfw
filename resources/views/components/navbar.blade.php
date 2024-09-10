@@ -1,2 +1,4 @@
-<a href="/dashboard">Home</a>
-<a href="/about">About</a>
+<nav>
+    <a href="/dashboard">Home</a>
+    <a href="/about">About</a>
+</nav>
