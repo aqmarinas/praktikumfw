@@ -20,9 +20,19 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('products', ProductController::class);
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/create', [ProductController::class, 'create'])->name("product-create");
+Route::post('/product', [ProductController::class, 'store'])->name("product-store");
+Route::get('/product/{id}', [ProductController::class, 'show']);
+Route::get('/product/{id}/edit', [ProductController::class, 'edit']);
+Route::put('/product/{id}', [ProductController::class, 'update']);
+Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
+
+
 
 // temporary
 Route::get('/home', function () {
     return view('home');
 });
+// Route::resource('products', ProductController::class);
