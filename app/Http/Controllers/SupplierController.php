@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::all();
-    return view('dashboard', compact('products'));
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view("master-data.product-master.create-product");
+        return view("master-data.supplier-master.create-supplier");
     }
 
     /**
@@ -29,20 +28,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // validate data input
         $validatedData = $request->validate([
-            'product_name' => 'required|string|max:255',
-            'unit' => 'required|string|max:50',
-            'type' => 'required|string|max:50',
-            'information' => 'nullable|string',
-            'qty' => 'required|integer',
-            'producer' => 'required|string|max:255',
+            'supplier_name' => 'required|string|max:255',
+            'supplier_address' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'comment' => 'required|string|max:255',
         ]);
 
         // create new product
-        Product::create($validatedData);
+        Supplier::create($validatedData);
 
-        return redirect()->back()->with('success', 'Product created successfully');
+        return redirect()->back()->with('success', 'Supplier created successfully');
+
     }
 
     /**

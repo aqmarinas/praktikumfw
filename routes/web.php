@@ -2,15 +2,14 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'RoleCheck:admin'])->name('dashboard');
+Route::get('/dashboard', [ProductController::class, 'index'])->middleware(['auth', 'verified', 'RoleCheck:admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -27,6 +26,10 @@ Route::get('/product/{id}', [ProductController::class, 'show']);
 Route::get('/product/{id}/edit', [ProductController::class, 'edit']);
 Route::put('/product/{id}', [ProductController::class, 'update']);
 Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
+Route::get('/supplier', [SupplierController::class, 'index']);
+Route::get('/supplier/create', [SupplierController::class, 'create'])->name("supplier-create");
+Route::post('/supplier', [SupplierController::class, 'store'])->name("supplier-store");
 
 
 
