@@ -18,6 +18,13 @@
                 </div>
             @endif
 
+            <form method="GET" action="{{ route('product-index') }}" class="mb-4 flex items-center">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..."
+                    class="w-1/4 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button type="submit"
+                    class="ml-2 rounded-lg bg-green-500 px-4 py-2 text-white shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Cari</button>
+            </form>
+
             <a href="{{ route('product-create') }}">
                 <button
                     class="mb-4 rounded-lg border border-green-500 bg-green-500 px-4 py-2 text-white shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -63,17 +70,14 @@
                             </td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="4" class="border border-gray-200 px-4 py-2 text-center text-gray-600">
-                                No products found.
-                            </td>
-                        </tr>
+                        <p class="mb-4 text-center text-2xl font-bold text-red-600">No products found</p>
                     @endforelse
                 </tbody>
             </table>
             {{-- Pagination --}}
             <div class="mt-4">
-                {{ $products->links() }}
+                {{-- {{ $products->links() }} --}}
+                {{ $products->appends(['search' => request('search')])->links() }}
             </div>
         </div>
     </div>

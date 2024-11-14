@@ -20,10 +20,27 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // $products = Product::all();
-        $products = Product::paginate(2);
+        // $products = Product::paginate(2);
+
+        // Ambil semua produk
+        $query = Product::query();
+
+        // Cek apakah ada parameter 'search' di request
+        if ($request->has('search') && $request->search != '') {
+
+            // Melakukan pencarian berdasarkan nama produk atau informasi
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('product_name', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Ambil produk dengan paginasi
+        $products = $query->paginate(2);
+
         return view("master-data.product-master.index-product", compact('products'));
     }
 
