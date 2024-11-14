@@ -25,7 +25,7 @@ class ProductController extends Controller
         // $products = Product::all();
         // $products = Product::paginate(2);
 
-        // Ambil semua produk
+        // Mulai query builder
         $query = Product::query();
 
         // Cek apakah ada parameter 'search' di request

@@ -8,6 +8,7 @@
     <div class="container mx-auto p-4">
         <div class="overflow-x-auto">
 
+            {{-- Alert --}}
             @if (session('success'))
                 <div class="mb-4 rounded-lg bg-green-50 p-4 text-green-500">
                     {{ session('success') }}
@@ -18,6 +19,7 @@
                 </div>
             @endif
 
+            {{-- Search --}}
             <form method="GET" action="{{ route('product-index') }}" class="mb-4 flex items-center">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari produk..."
                     class="w-1/4 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -47,7 +49,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @forelse ($products as $product)
                         <tr class="bg-white">
                             <td class="border border-gray-200 px-4 py-2">{{ $product->id }}</td>
