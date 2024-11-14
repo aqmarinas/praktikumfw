@@ -28,7 +28,9 @@
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">ID</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Product Name</th>
+                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">
+                            Product
+                            Name</th>
                         <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Unit</th>
                         <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Type</th>
                         <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Information</th>
@@ -39,10 +41,14 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <tr class="bg-white">
                             <td class="border border-gray-200 px-4 py-2">{{ $product->id }}</td>
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->product_name }}</td>
+                            <td class="border border-gray-200 px-4 py-2 hover:text-blue-500 hover:underline">
+                                <a href="{{ route('product-detail', $product->id) }}">
+                                    {{ $product->product_name }}
+                                </a>
+                            </td>
                             <td class="border border-gray-200 px-4 py-2">{{ $product->unit }}</td>
                             <td class="border border-gray-200 px-4 py-2">{{ $product->type }}</td>
                             <td class="border border-gray-200 px-4 py-2">{{ $product->information }}</td>
@@ -56,11 +62,19 @@
                                 </button>
                             </td>
                         </tr>
-                    @endforeach
-
-                    <!-- Tambahkan baris lainnya sesuai kebutuhan -->
+                    @empty
+                        <tr>
+                            <td colspan="4" class="border border-gray-200 px-4 py-2 text-center text-gray-600">
+                                No products found.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            {{-- Pagination --}}
+            <div class="mt-4">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
 

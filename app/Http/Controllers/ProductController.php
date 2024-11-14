@@ -22,7 +22,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        $products = Product::paginate(2);
         return view("master-data.product-master.index-product", compact('products'));
     }
 
@@ -53,7 +54,16 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Ada 2 cara menampilkan detail product
+        // pakai find atau findOrFail
+        $product = Product::findOrFail($id);        
+        return view("master-data.product-master.detail-product", compact('product'));
+
+        // $product = Product::find($id);
+        // if (!$product) {
+        //     return redirect()->route('product-index')->with('error', 'Product not found');
+        // }
+        // return view('product-detail', compact('product'));
     }
 
     /**
