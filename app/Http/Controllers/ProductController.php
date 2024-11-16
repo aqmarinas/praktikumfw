@@ -73,14 +73,14 @@ class ProductController extends Controller
     {
         // Ada 2 cara menampilkan detail product
         // pakai find atau findOrFail
-        $product = Product::findOrFail($id);        
-        return view("master-data.product-master.detail-product", compact('product'));
+        // $product = Product::findOrFail($id);        
+        // return view("master-data.product-master.detail-product", compact('product'));
 
-        // $product = Product::find($id);
-        // if (!$product) {
-        //     return redirect()->route('product-index')->with('error', 'Product not found');
-        // }
-        // return view('product-detail', compact('product'));
+        $product = Product::find($id);
+        if (!$product) {
+            return redirect()->route('product-index')->with('error', 'Product not found');
+        }
+        return view("master-data.product-master.detail-product", compact('product'));
     }
 
     /**

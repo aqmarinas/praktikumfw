@@ -27,54 +27,57 @@
                     class="ml-2 rounded-lg bg-green-500 px-4 py-2 text-white shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Cari</button>
             </form>
 
+            {{-- Add Product --}}
             <a href="{{ route('product-create') }}">
                 <button
                     class="mb-4 rounded-lg border border-green-500 bg-green-500 px-4 py-2 text-white shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
                     Add product data
                 </button>
             </a>
-            <table class="min-w-full border-collapse border border-gray-200">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">ID</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">
-                            Product
-                            Name</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Unit</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Type</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Information</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Qty</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Producer</th>
-                        <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($products as $product)
-                        <tr class="bg-white">
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->id }}</td>
-                            <td class="border border-gray-200 px-4 py-2 hover:text-blue-500 hover:underline">
-                                <a href="{{ route('product-detail', $product->id) }}">
-                                    {{ $product->product_name }}
-                                </a>
-                            </td>
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->unit }}</td>
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->type }}</td>
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->information }}</td>
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->qty }}</td>
-                            <td class="border border-gray-200 px-4 py-2">{{ $product->producer }}</td>
-                            <td class="border border-gray-200 px-4 py-2">
-                                <a href="{{ route('product-edit', $product->id) }}"
-                                    class="px-2 text-blue-600 hover:text-blue-800">Edit</a>
-                                <button class="px-2 text-red-600 hover:text-red-800"
-                                    onclick="confirmDelete( '{{ route('product-delete', $product->id) }}')">Hapus
-                                </button>
-                            </td>
+
+            {{-- Table --}}
+            @if ($products->isNotEmpty())
+                <table class="min-w-full border-collapse border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">ID</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Product Name</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Unit</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Type</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Information</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Qty</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Producer</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Aksi</th>
                         </tr>
-                    @empty
-                        <p class="mb-4 text-center text-2xl font-bold text-red-600">No products found</p>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($products as $product)
+                            <tr class="bg-white">
+                                <td class="border border-gray-200 px-4 py-2">{{ $product->id }}</td>
+                                <td class="border border-gray-200 px-4 py-2 hover:text-blue-500 hover:underline">
+                                    <a href="{{ route('product-detail', $product->id) }}">
+                                        {{ $product->product_name }}
+                                    </a>
+                                </td>
+                                <td class="border border-gray-200 px-4 py-2">{{ $product->unit }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ $product->type }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ $product->information }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ $product->qty }}</td>
+                                <td class="border border-gray-200 px-4 py-2">{{ $product->producer }}</td>
+                                <td class="border border-gray-200 px-4 py-2">
+                                    <a href="{{ route('product-edit', $product->id) }}"
+                                        class="px-2 text-blue-600 hover:text-blue-800">Edit</a>
+                                    <button class="px-2 text-red-600 hover:text-red-800"
+                                        onclick="confirmDelete('{{ route('product-delete', $product->id) }}')">Hapus</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="mb-4 text-center text-2xl font-bold text-white">No products found</p>
+            @endif
+
             {{-- Pagination --}}
             <div class="mt-4">
                 {{-- {{ $products->links() }} --}}
