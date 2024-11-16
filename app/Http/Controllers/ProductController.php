@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 
@@ -16,6 +17,7 @@ class ProductController extends Controller
         'information' => 'nullable|string',
         'qty' => 'required|integer|min:1',
         'producer' => 'required|string|max:255',
+        'supplier_id' => 'required|exists:suppliers,id'
     ];
     /**
      * Display a listing of the resource.
@@ -26,21 +28,23 @@ class ProductController extends Controller
         // $products = Product::paginate(2);
 
         // Mulai query builder
-        $query = Product::query();
+        $query = Product::with('supplier');
 
         // Cek apakah ada parameter 'search' di request
         if ($request->has('search') && $request->search != '') {
 
-            // Melakukan pencarian berdasarkan nama produk atau informasi
             $search = $request->search;
+
+            // Melakukan pencarian berdasarkan nama produk atau informasi
             $query->where(function ($q) use ($search) {
                 $q->where('product_name', 'like', '%' . $search . '%');
             });
         }
 
         // Ambil produk dengan paginasi
-        $products = $query->paginate(2);
+        $products = $query->paginate(10);
 
+        // return $products;
         return view("master-data.product-master.index-product", compact('products'));
     }
 
@@ -49,7 +53,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view("master-data.product-master.create-product");
+        $suppliers = Supplier::all();
+        return view("master-data.product-master.create-product", compact('suppliers'));
     }
 
     /**
@@ -89,6 +94,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
+        
         return view('master-data.product-master.edit-product', compact('product'));
     }
 

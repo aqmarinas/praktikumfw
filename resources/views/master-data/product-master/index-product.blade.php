@@ -47,7 +47,8 @@
                             <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Information</th>
                             <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Qty</th>
                             <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Producer</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Aksi</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Supplier Name</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +65,8 @@
                                 <td class="border border-gray-200 px-4 py-2">{{ $product->information }}</td>
                                 <td class="border border-gray-200 px-4 py-2">{{ $product->qty }}</td>
                                 <td class="border border-gray-200 px-4 py-2">{{ $product->producer }}</td>
+                                <td class="border border-gray-200 px-4 py-2">
+                                    {{ $product->supplier->supplier_name ?? '-' }}</td>
                                 <td class="border border-gray-200 px-4 py-2">
                                     <a href="{{ route('product-edit', $product->id) }}"
                                         class="px-2 text-blue-600 hover:text-blue-800">Edit</a>

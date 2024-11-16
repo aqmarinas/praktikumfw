@@ -78,6 +78,26 @@
                                     class="mt-2 w-full rounded-lg border-gray-300 p-2 focus:border-indigo-500 focus:ring-indigo-500">
                             </div>
 
+                            <div class="mb-4">
+                                <label for="unit" class="block font-medium text-gray-700">Unit:</label>
+                                <select id="unit" name="unit"
+                                    class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    required>
+                                    <option value="" disabled>Select a unit</option>
+                                    <option value="kg" {{ old('unit', $product->unit) == 'kg' ? 'selected' : '' }}>
+                                        Kilogram (kg)</option>
+                                    <option value="ltr"
+                                        {{ old('unit', $product->unit) == 'ltr' ? 'selected' : '' }}>
+                                        Liter (ltr)</option>
+                                    <option value="pcs"
+                                        {{ old('unit', $product->unit) == 'pcs' ? 'selected' : '' }}>
+                                        Pieces (pcs)</option>
+                                    <option value="box"
+                                        {{ old('unit', $product->unit) == 'box' ? 'selected' : '' }}>
+                                        Box</option>
+                                </select>
+                            </div>
+
                             <div class="flex justify-end">
                                 <button type="submit"
                                     class="rounded bg-indigo-500 px-4 py-2 text-white hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-500">Update
