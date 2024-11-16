@@ -79,22 +79,18 @@
                             </div>
 
                             <div class="mb-4">
-                                <label for="unit" class="block font-medium text-gray-700">Unit:</label>
-                                <select id="unit" name="unit"
+                                <label for="supplier" class="block font-medium text-gray-700">Supplier:</label>
+                                <select id="supplier" name="supplier_id"
                                     class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     required>
-                                    <option value="" disabled>Select a unit</option>
-                                    <option value="kg" {{ old('unit', $product->unit) == 'kg' ? 'selected' : '' }}>
-                                        Kilogram (kg)</option>
-                                    <option value="ltr"
-                                        {{ old('unit', $product->unit) == 'ltr' ? 'selected' : '' }}>
-                                        Liter (ltr)</option>
-                                    <option value="pcs"
-                                        {{ old('unit', $product->unit) == 'pcs' ? 'selected' : '' }}>
-                                        Pieces (pcs)</option>
-                                    <option value="box"
-                                        {{ old('unit', $product->unit) == 'box' ? 'selected' : '' }}>
-                                        Box</option>
+                                    <option value="" disabled
+                                        {{ old('supplier_id', $product->supplier_id) === null ? 'selected' : '' }}>
+                                        Select a supplier</option>
+                                    @foreach ($suppliers as $supplier)
+                                        <option value="{{ $supplier->id }}"
+                                            {{ old('supplier_id', $product->supplier_id) == $supplier->id ? 'selected' : '' }}>
+                                            {{ $supplier->supplier_name }} </option>
+                                    @endforeach
                                 </select>
                             </div>
 

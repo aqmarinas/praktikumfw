@@ -66,9 +66,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="supplier_id"
-                                    class="block text-sm font-medium text-gray-700">Supplier</label>
-                                <select id="supplier_id" name="supplier_id"
+                                <label for="supplier" class="block text-sm font-medium text-gray-700">Supplier</label>
+                                <select id="supplier" name="supplier_id"
                                     class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     required>
                                     <option value="" disabled selected>Select a supplier</option>

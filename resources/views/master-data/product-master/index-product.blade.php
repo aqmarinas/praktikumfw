@@ -40,21 +40,21 @@
                 <table class="min-w-full border-collapse border border-gray-200">
                     <thead>
                         <tr class="bg-gray-100">
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">ID</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Product Name</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Unit</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Type</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Information</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Qty</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Producer</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Supplier Name</th>
-                            <th class="border border-gray-200 px-4 py-2 text-left text-gray-600">Action</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">ID</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Product Name</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Unit</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Type</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Information</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Qty</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Producer</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Supplier Name</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($products as $product)
                             <tr class="bg-white">
-                                <td class="border border-gray-200 px-4 py-2">{{ $product->id }}</td>
+                                <td class="border border-gray-200 px-4 py-2 text-center">{{ $product->id }}</td>
                                 <td class="border border-gray-200 px-4 py-2 hover:text-blue-500 hover:underline">
                                     <a href="{{ route('product-detail', $product->id) }}">
                                         {{ $product->product_name }}
@@ -71,7 +71,7 @@
                                     <a href="{{ route('product-edit', $product->id) }}"
                                         class="px-2 text-blue-600 hover:text-blue-800">Edit</a>
                                     <button class="px-2 text-red-600 hover:text-red-800"
-                                        onclick="confirmDelete('{{ route('product-delete', $product->id) }}')">Hapus</button>
+                                        onclick="confirmDelete('{{ route('product-delete', $product->id) }}')">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
