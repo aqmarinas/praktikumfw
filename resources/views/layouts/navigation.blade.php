@@ -41,7 +41,7 @@
                             Product Master
                         </x-dropdown-link>
                         {{-- jangan lupa ganti --}}
-                        <x-dropdown-link :href="route('supplier-create')">
+                        <x-dropdown-link :href="route('supplier-index')">
                             Supplier Master
                         </x-dropdown-link>
 

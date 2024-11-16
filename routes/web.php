@@ -30,6 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier-index');
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name("supplier-create");
     Route::post('/supplier', [SupplierController::class, 'store'])->name("supplier-store");
+    Route::post('/supplier', [SupplierController::class, 'store'])->name("supplier-store");
+    Route::get('/supplier/{id}', [SupplierController::class, 'show'])->name("supplier-detail");
+    Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('supplier-edit');
+    Route::put('/supplier/{id}', [SupplierController::class, 'update'])->name('supplier-update');
+    Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier-delete');
+
 });
 
 require __DIR__.'/auth.php';
