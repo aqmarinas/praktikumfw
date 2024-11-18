@@ -13,7 +13,8 @@
                     <div class="container mx-auto mt-5">
                         <h2 class="mb-5 text-2xl font-bold">Create New Product</h2>
                         <x-auth-session-status class="mb-4" :status="session('success')" />
-                        <form action="{{ route('product-store') }}" method="POST" class="space-y-4">
+                        <form action="{{ route('product-store') }}" method="POST" class="space-y-4"
+                            enctype="multipart/form-data">
                             @csrf <!-- Laravel CSRF protection -->
 
                             <div class="form-group">
@@ -75,6 +76,20 @@
                                         <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image" class="block text-sm font-medium text-gray-700">
+                                    Image</label>
+                                <input type="file" id="image" name="image"
+                                    class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    accept="image/*">
+                                {{-- @if ($product->image)
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/images/' . $product->image->filename) }}"
+                                            alt="Product Image" class="h-20 w-20">
+                                    </div>
+                                @endif --}}
                             </div>
 
                             <button type="submit"

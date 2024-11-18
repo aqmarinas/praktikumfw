@@ -17,7 +17,8 @@ class ProductController extends Controller
         'information' => 'nullable|string',
         'qty' => 'required|integer|min:1',
         'producer' => 'required|string|max:255',
-        'supplier_id' => 'required|exists:suppliers,id'
+        'supplier_id' => 'required|exists:suppliers,id',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
     ];
     /**
      * Display a listing of the resource.
@@ -28,7 +29,7 @@ class ProductController extends Controller
         // $products = Product::paginate(2);
 
         // Mulai query builder
-        $query = Product::with('supplier');
+        $query = Product::with(['supplier', 'image']);
 
         // Cek apakah ada parameter 'search' di request
         if ($request->has('search') && $request->search != '') {
@@ -66,7 +67,17 @@ class ProductController extends Controller
         $validatedData = $request->validate($this->rules);
 
         // create new product
-        Product::create($validatedData);
+        $product = Product::create($validatedData);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/images', $filename);
+
+            $product->image()->create([
+                'filename' => $filename,
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Product created successfully');
     }

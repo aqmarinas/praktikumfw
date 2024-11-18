@@ -7,7 +7,6 @@
 
     <div class="container mx-auto p-4">
         <div class="overflow-x-auto">
-
             {{-- Alert --}}
             @if (session('success'))
                 <div class="mb-4 rounded-lg bg-green-50 p-4 text-green-500">
@@ -48,6 +47,7 @@
                             <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Qty</th>
                             <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Producer</th>
                             <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Supplier Name</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Image</th>
                             <th class="border border-gray-200 px-4 py-2 text-center text-gray-600">Action</th>
                         </tr>
                     </thead>
@@ -67,6 +67,18 @@
                                 <td class="border border-gray-200 px-4 py-2">{{ $product->producer }}</td>
                                 <td class="border border-gray-200 px-4 py-2">
                                     {{ $product->supplier->supplier_name ?? '-' }}</td>
+                                <td class="border border-gray-200 px-4 py-2">
+                                    @if ($product->image)
+                                        @php
+                                            dd(asset('storage/images/' . $product->image->filename));
+                                        @endphp
+                                        <img src="{{ asset('storage/images/' . $product->image->filename) }}"
+                                            alt="Product Image" class="h-20 w-20">
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+
                                 <td class="border border-gray-200 px-4 py-2">
                                     <a href="{{ route('product-edit', $product->id) }}"
                                         class="px-2 text-blue-600 hover:text-blue-800">Edit</a>
