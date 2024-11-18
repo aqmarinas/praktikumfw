@@ -34,6 +34,12 @@
                     Add product data
                 </button>
             </a>
+            <a href="{{ route('product-export') }}">
+                <button
+                    class="mb-4 rounded-lg border border-green-600 bg-green-600 px-4 py-2 text-white shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-600">
+                    Export data
+                </button>
+            </a>
 
             {{-- Table --}}
             @if ($products->isNotEmpty())

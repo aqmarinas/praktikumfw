@@ -123,4 +123,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'providers' => [
+        Illuminate\Auth\AuthServiceProvider::class,
+    ],
+
+    'aliases' => [
+        'RoleCheck' => App\Http\Middleware\RoleCheck::class,
+    ],
 ];

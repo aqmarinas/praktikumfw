@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product-edit');
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product-update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product-delete');
+    Route::get('/product/export/excel', [ProductController::class, 'export_excel'])->name('product-export');
 
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier-index');
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name("supplier-create");
