@@ -69,9 +69,9 @@
                                     {{ $product->supplier->supplier_name ?? '-' }}</td>
                                 <td class="border border-gray-200 px-4 py-2">
                                     @if ($product->image)
-                                        @php
+                                        {{-- @php
                                             dd(asset('storage/images/' . $product->image->filename));
-                                        @endphp
+                                        @endphp --}}
                                         <img src="{{ asset('storage/images/' . $product->image->filename) }}"
                                             alt="Product Image" class="h-20 w-20">
                                     @else
