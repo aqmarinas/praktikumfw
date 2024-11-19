@@ -149,7 +149,7 @@ class ProductController extends Controller
         return redirect()->back()->with('error', 'Product not found!');
     }
 
-    public function export (){
+    public function exportExcel (){
         return Excel::download(new ProductsExport, 'product.xlsx');
     }
 }
