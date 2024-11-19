@@ -36,7 +36,13 @@
             <a href="{{ route('product-export-excel') }}">
                 <button
                     class="mb-4 rounded-lg border-2 border-green-500 bg-white px-4 py-2 text-green-500 shadow-lg hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500">
-                    Export
+                    Export (.xls)
+                </button>
+            </a>
+            <a href="{{ route('product-export-pdf') }}">
+                <button
+                    class="mb-4 rounded-lg border-2 border-green-500 bg-white px-4 py-2 text-green-500 shadow-lg hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    Export (.pdf)
                 </button>
             </a>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProductsExport;
+use App\Exports\ProductsPdfExport;
 use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -151,5 +152,9 @@ class ProductController extends Controller
 
     public function exportExcel (){
         return Excel::download(new ProductsExport, 'product.xlsx');
+    }
+
+    public function exportPdf(){
+        return Excel::download(new ProductsPdfExport, 'products.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 }

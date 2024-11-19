@@ -27,8 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product-update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product-delete');
     Route::get('/product/export/excel', [ProductController::class, 'exportExcel'])->name('product-export-excel');
-
-
+    Route::get('/product/export/pdf', [ProductController::class, 'exportPdf'])->name('product-export-pdf');
 
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier-index');
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name("supplier-create");
