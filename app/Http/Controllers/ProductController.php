@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductsExport;
 use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -146,6 +147,9 @@ class ProductController extends Controller
         }
         
         return redirect()->back()->with('error', 'Product not found!');
+    }
 
+    public function export (){
+        return Excel::download(new ProductsExport, 'product.xlsx');
     }
 }

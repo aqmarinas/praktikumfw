@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product-edit');
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product-update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product-delete');
+    Route::get('/export', [ProductController::class, 'export'])->name('product-export');
 
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier-index');
     Route::get('/supplier/create', [SupplierController::class, 'create'])->name("supplier-create");
